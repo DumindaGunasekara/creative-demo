@@ -1,3 +1,8 @@
+/**
+ *  @description this class inherit sharing from the calling class. 
+ *      Class runs all SOQL queries and parse data into wrapper class and return.
+ *      This class has only Account related functionalities
+ */
 public inherited sharing class AccountService {
 
     public AccountService() {
@@ -10,12 +15,31 @@ public inherited sharing class AccountService {
      * @return AccountInfoWrapper wrapper class with Account, Contact and Case information
      */    
     public AccountInfoWrapper getAccountInformation (String accountId){
-        
-        return null;
+        return buildAccountInfoWrapper(accountId);
     } 
 
+    /**
+     * @description run the SOQL queries to get results and parse to wrapper classes
+     * @param accountId Account record Id
+     * @return AccountInfoWrapper wrapper class with Account, Contact and Case information
+     */
     private AccountInfoWrapper buildAccountInfoWrapper(String accountId) {
-        return null;
+        Account acct = getAccountInfoById(accountId);
+        Contact contact = getContactInfoByAccountId(accountId);
+        List<Case> cases = getCasesByAccountId(accountId);
+
+        AccountAddress accountAddress = buildAccountAddress(acct);
+        ContactInfo contactInfo = buildContactInfo(contact);
+        CaseSummary caseSummary = buildCaseSummary(cases);
+
+        AccountInfoWrapper wrapper = new AccountInfoWrapper(
+            acct?.Name,
+            acct?.AccountNumber,
+            accountAddress,
+            contactInfo,
+            caseSummary );
+
+        return wrapper;
     }
 
     /**
@@ -29,8 +53,7 @@ public inherited sharing class AccountService {
             acct?.BillingCity,
             acct?.BillingState,
             acct?.BillingPostalCode,
-            acct?.BillingCountry
-        );
+            acct?.BillingCountry );
 
         return accountAddress;
     }
@@ -46,8 +69,7 @@ public inherited sharing class AccountService {
             contact?.Name,
             contact?.Email,
             contact?.MobilePhone,
-            contact?.Phone
-        );
+            contact?.Phone );
 
         return contactInfo;
     }
@@ -60,8 +82,7 @@ public inherited sharing class AccountService {
     private CaseSummary buildCaseSummary(List<Case> cases) {
         CaseSummary caseSummary = new CaseSummary(
             cases?.size(),
-            cases[0]?.CreatedDate
-        );
+            cases[0]?.CreatedDate );
 
         return caseSummary;
     }
