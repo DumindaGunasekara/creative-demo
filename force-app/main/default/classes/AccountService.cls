@@ -80,11 +80,15 @@ public inherited sharing class AccountService {
      * @return CaseSummary wrapper class 
      */      
     private CaseSummary buildCaseSummary(List<Case> cases) {
-        CaseSummary caseSummary = new CaseSummary(
-            cases?.size(),
-            cases[0]?.CreatedDate );
+        if(cases.size() > 0) {
+            CaseSummary caseSummary = new CaseSummary(
+                cases.size(),
+                cases[0].CreatedDate );
+    
+            return caseSummary;
+        }
 
-        return caseSummary;
+        return null;
     }
 
     /**
