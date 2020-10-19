@@ -1,0 +1,110 @@
+<template>
+    <template if:true={accountData}>
+        <lightning-card title="Account Basic Information" variant="Narrow" icon-name="standard:account"> 
+            <lightning-layout vertical-align="stretch" multiple-rows="true" class="x-large">
+                <lightning-layout-item size="12">
+                    <!--Account Name-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Account Name</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-text value={accountData.accountName}></lightning-formatted-text>
+                    </lightning-layout-item>
+                    <!--Account Number-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Account Number</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-text value={accountData.accountNumber}></lightning-formatted-text>
+                    </lightning-layout-item> 
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+
+        <lightning-card title="Account Address" variant="Narrow" icon-name="standard:account">
+            <lightning-layout vertical-align="stretch" multiple-rows="true" class="x-large">
+                <lightning-layout-item size="12">
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Address</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="10" flexibility="auto" padding="around-small">
+                        <lightning-formatted-address
+                            street={accountData.accountAddress.streetName}
+                            city={accountData.accountAddress.city}
+                            country={accountData.accountAddress.country}
+                            province={accountData.accountAddress.province}
+                            postal-code={accountData.accountAddress.postalCode} >
+                        </lightning-formatted-address>
+                    </lightning-layout-item>                    
+                </lightning-layout-item>                
+            </lightning-layout>
+        </lightning-card>
+
+        <lightning-card title="Primary Contact" variant="Narrow" icon-name="standard:contact">
+            <lightning-layout vertical-align="stretch" multiple-rows="true" class="x-large">
+                <lightning-layout-item size="12">
+                    <!--Name-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Name</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-text value={accountData.mainContact.name}></lightning-formatted-text>
+                    </lightning-layout-item>                    
+                    <!--Title-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Title</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-text value={accountData.mainContact.title}></lightning-formatted-text>
+                    </lightning-layout-item>                     
+                </lightning-layout-item> 
+                <lightning-layout-item size="12" flexibility="auto">
+                    <!--Email-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Email</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-email value={accountData.mainContact.email}></lightning-formatted-email>
+                    </lightning-layout-item>  
+                    <!--Phone-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Mobile</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-phone value={accountData.mainContact.mobile}></lightning-formatted-phone>
+                    </lightning-layout-item>                     
+                </lightning-layout-item> 
+                <lightning-layout-item size="12">
+                    <!--Office Phone-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Office Phone</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-phone value={accountData.mainContact.phone}></lightning-formatted-phone>
+                    </lightning-layout-item>                      
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+
+        <lightning-card title="Case Information" variant="Narrow" icon-name="standard:case">
+            <lightning-layout vertical-align="stretch" multiple-rows="true" class="x-large">
+                <lightning-layout-item size="12">
+                    <!--Case Count-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Total Active Cases</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-number value={accountData.caseSummary.activeCaseCount}></lightning-formatted-number>
+                    </lightning-layout-item>                    
+                    <!--Last Case Created-->
+                    <lightning-layout-item size="2" flexibility="auto" padding="around-small">
+                        <b>Last Case</b>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" flexibility="auto" padding="around-small">
+                        <lightning-formatted-date-time value={accountData.caseSummary.latestCaseCreatedDate}></lightning-formatted-date-time>
+                    </lightning-layout-item>                     
+                </lightning-layout-item> 
+            </lightning-layout>
+        </lightning-card>
+    </template>
+</template>

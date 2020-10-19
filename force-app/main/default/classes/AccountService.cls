@@ -146,10 +146,15 @@ public inherited sharing class AccountService {
      * @description Inner class wrapper to keep Account, Contact and Case information
      */
     public class AccountInfoWrapper {
+        @AuraEnabled 
         public String accountName {get; set;}
+        @AuraEnabled 
         public String accountNumber {get; set;}
+        @AuraEnabled 
         public AccountAddress accountAddress {get; set;}
+        @AuraEnabled 
         public ContactInfo mainContact {get; set;}
+        @AuraEnabled 
         public CaseSummary caseSummary {get; set;}
 
         public AccountInfoWrapper(String accountName, String accountNumber, AccountAddress accountAddress,
@@ -166,10 +171,15 @@ public inherited sharing class AccountService {
      * @description Inner class to keep Account Address information
      */    
     public class AccountAddress {
+        @AuraEnabled
         public String streetName {get; set;}
+        @AuraEnabled
         public String city {get; set;}
+        @AuraEnabled
         public String province {get; set;}
+        @AuraEnabled
         public String postalCode {get; set;}
+        @AuraEnabled
         public String country  {get; set;}
 
         public AccountAddress(String streetName, String city, String province, 
@@ -186,10 +196,15 @@ public inherited sharing class AccountService {
      * @description Inner class to keep Contact informaton 
      */   
     public class ContactInfo {
+        @AuraEnabled
         public String title {get; set;}
+        @AuraEnabled
         public String name {get; set;}
+        @AuraEnabled
         public String email {get; set;}
+        @AuraEnabled
         public String mobile {get; set;}
+        @AuraEnabled
         public String phone {get; set;}
 
         public ContactInfo(String title, String name, String email, String mobile, String phone) {
@@ -205,7 +220,9 @@ public inherited sharing class AccountService {
      * @description Inner class to keep Case summary information
      */ 
     public class CaseSummary {
+        @AuraEnabled
         public Integer activeCaseCount {get; set;}
+        @AuraEnabled
         public Datetime latestCaseCreatedDate {get; set;}
 
         public CaseSummary(Integer activeCaseCount, Datetime latestCaseCreatedDate) {
